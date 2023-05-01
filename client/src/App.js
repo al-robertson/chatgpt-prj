@@ -13,7 +13,7 @@ function App() {
 
   const [input, setInput] = useState("");
   const [models, setModels] = useState([]);
-  const [currentModel, setCurrentModel] = useState("ada");
+  const [currentModel, setCurrentModel] = useState("text-davinci-003");
   const [chatLog, setChatLog] = useState([{ 
     user: "gpt",
     message: "How can I help you today?"
@@ -32,7 +32,7 @@ function App() {
     .then(res => res.json())
     .then(data => {
       console.log(data.models.data)
-      setModels(data.models.data)
+      setModels(data.models)
     })
   }
 
@@ -50,7 +50,7 @@ function App() {
       },
       body: JSON.stringify({
         message: messages,
-        currentModel
+        currentModel,
       })
     });
     const data = await response.json();
@@ -64,6 +64,7 @@ function App() {
           <span>+</span>
           New chat
         </div>
+
         <div className="models">
           <select onChange={(e)=>{
             setCurrentModel(e.target.value)
@@ -74,6 +75,7 @@ function App() {
             ))}
           </select>
         </div>
+
       </aside>
       <section className="chatbox">
       <div className="chat-log">
