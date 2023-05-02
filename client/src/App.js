@@ -17,10 +17,12 @@ function App() {
   const [chatLog, setChatLog] = useState([{ 
     user: "gpt",
     message: "How can I help you today?"
-  },{
-    user: "me",
-    message: "I want to use ChatGPT today"
-  }]);
+  },
+  // {
+  //   user: "me",
+  //   message: "I want to use ChatGPT today"
+  // }
+  ]);
 
   //clear chat
   function clearChat(){
@@ -92,6 +94,9 @@ function App() {
           className="chat-input-textarea" 
           placeholder="Send a message"></input>
         </form>
+        <p class="chat-info">
+          ChatGPT front-end created by Al Robertson May 1st 2023 (current selected model: {currentModel} )
+        </p>
       </div>
       </section>
     </div>
@@ -103,7 +108,8 @@ const ChatMessage = ({ message }) => {
     <div className={`chat-message ${message.user === "gpt" && "chatgpt"}`}>
     <div className="chat-message-center">
       <div className={`avatar ${message.user === "gpt" && "chatgpt"}`}>
-        {message.user === "gpt" && <svg
+        {message.user === "gpt" && 
+  <svg
     xmlns="http://www.w3.org/2000/svg"
     width={41}
     height={41}
